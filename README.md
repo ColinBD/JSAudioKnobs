@@ -20,7 +20,7 @@ Add audio knobs (dials) to your web app. Ideal for web audio API based projects
   
 ## Building your knob
 When you create a knob and pass in the object providing the div ID, you can also set the following parameters to override the defaults:
-`{
+{
   id = "knob1", // the ID of the div you want the knob to live in
   lowVal = 0, // the minimum value the knob goes to - set this to whatever you like
   highVal = 100, // the maximum value the knob goes to - again, set this to whatever you like
@@ -30,7 +30,7 @@ When you create a knob and pass in the object providing the div ID, you can also
   type = "LittlePhatty", //alternatives: Vintage, FStyle, SSLish, RedScale, Silver, Aqua, kjLED, Credence, Wedge, Hexagonal, Hippy, Bluesbreaker, Oscar
   label = true, // or false. Do you want to see a numeric readout of the value below the knob?
   lblTxtColor = "silver" // or "#C0C0C0" or any other css colour you like
-}`
+}
 
 ## Author
 Colin Bone Dodds
