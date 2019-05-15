@@ -14,9 +14,11 @@ Add audio knobs (dials) to your web app. Ideal for web audio API based projects
 7. You can get the value of a knob using `dial1.getValue()`
 8. You set the value of a knob like `dial1.setValue(20)` 
 9. You can hook into the knob change event by placing the following function in your script
-  `function knobChanged(id, val) {
-      console.log(`knob with ID: ${id} change to ${val}`);
-  }`
+  ```javascript
+  function knobChanged(id, val) {
+      //console.log(`knob with ID: ${id} change to ${val}`);
+  }
+  ```
   
 ## Building your knob
 When you create a knob and pass in the object providing the div ID, you can also set the following parameters to override the defaults:
