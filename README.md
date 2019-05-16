@@ -2,7 +2,9 @@
 
 Add audio knobs (dials) to your web app. Ideal for web audio API based projects
 
-<img src="docs/images/js_knobs.png" width="200px">
+<p align="center">
+   <img src="docs/images/js_knobs.png" width="600px">
+</p>
 
 ## Getting started
 
