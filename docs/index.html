@@ -1,11 +1,181 @@
+<!-- TO DO 
+1) form entries modify the objParams object
+2) each form modification causes the current knob to be destroyed and a new one created passing in the new object
+  > only make the call to destroy current knob once a user clicks away from a text entry box 
+    > we don't want to be continually making this call for each letter typed
+-->
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
     <title>JS Audio Knobs</title>
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto"
+      rel="stylesheet"
+    />
+    <script src="./jsaudioknobs/knobs.js"></script>
   </head>
   <body>
-    <h1>JS Audio Knobs</h1>
-    <p>The knob builder for the JS Audio Knobs library will go here</p>
+    <header id="title">
+      <h1>JS Audio Knobs - Knob Builder</h1>
+      <span id="forkBanner">
+        <a href="https://github.com/ColinBD/JSAudioKnobs"
+          ><img
+            width="149"
+            height="149"
+            src="https://github.blog/wp-content/uploads/2008/12/forkme_left_red_aa0000.png?resize=149%2C149"
+            class="attachment-full size-full"
+            alt="Fork me on GitHub"
+            data-recalc-dims="1"
+        /></a>
+      </span>
+    </header>
+    <section id="builder">
+      <div id="formContainer">
+        <form id="mainForm">
+          <!-- ID -->
+          <span id="hint"
+            >what is the ID of the div you will be housing the knob in?</span
+          ><br />
+          div ID: <input type="text" name="id" /> <br /><br />
+          <!-- type -->
+          <span id="hint">what style of knob would you like?</span><br />
+          style:
+          <select name="knobType">
+            <option value="LittlePhatty">LittlePhatty</option>
+            <option value="Vintage">Vintage</option>
+            <option value="FStyle">FStyle</option>
+            <option value="SSLish">SSLish</option>
+            <option value="RedScale">RedScale</option>
+            <option value="Silver">Silver</option>
+            <option value="Aqua">Aqua</option>
+            <option value="kjLED">kjLED</option>
+            <option value="Credence">Credence</option>
+            <option value="Wedge">Wedge</option>
+            <option value="Hexagonal">Hexagonal</option>
+            <option value="Hippy">Hippy</option>
+            <option value="Bluesbreaker">Bluesbreaker</option>
+            <option value="Oscar">Oscar</option>
+          </select>
+          <br /><br />
+          <!-- size -->
+          <span id="hint">what size would you like the knob to be?</span><br />
+          <input type="radio" name="size" value="xsmall" /><span id="radioSize"
+            >xsmall</span
+          >
+          <input type="radio" name="size" value="small" /><span id="radioSize"
+            >small</span
+          >
+          <input type="radio" name="size" value="medium" checked /><span
+            id="radioSize"
+            >medium</span
+          >
+          <input type="radio" name="size" value="large" /><span id="radioSize"
+            >large</span
+          >
+          <input type="radio" name="size" value="xlarge" /><span id="radioSize"
+            >xlarge</span
+          ><br /><br />
+          <!-- min value -->
+          <span id="hint"
+            >what the minimum value the knob should output? you must set an
+            integer value</span
+          ><br />
+          minimum: <input type="text" name="min" /> <br /><br />
+          <!-- max value -->
+          <span id="hint"
+            >what the maximum value the knob should output? you must set an
+            integer value</span
+          ><br />
+          maximum: <input type="text" name="max" /> <br /><br />
+          <!-- value -->
+          <span id="hint">set the initial value for the knob</span><br />
+          value: <input type="text" name="val" /> <br /><br />
+          <!-- sensitivity -->
+          <span id="hint"
+            >how much should mouse moves change the knob? less than 1 will make
+            it less sensitive to mouse movements, greater than 1 for greater
+            sensitivity</span
+          ><br />
+          sensitivity: <input type="text" name="sensitivity" /> <br /><br />
+          <!-- label -->
+          <!-- size -->
+          <span id="hint"
+            >do you want to see the knobs output value in a label below the
+            knob?</span
+          ><br />
+          show the label?
+          <input type="radio" name="lbl" value="true" /><span id="radioSize"
+            >show</span
+          >
+          <input type="radio" name="lbl" value="false" />hide<br /><br />
+          <!-- lblTxtColor -->
+          <span id="hint"
+            >you can set the colour of the label just enter a css colour name or
+            HEX code</span
+          ><br />
+          label colour: <input type="text" name="lblColour" /> <br /><br />
+        </form>
+        <button class="button" onclick="resetForm()">reset</button>
+      </div>
+    </section>
+    <section id="output">
+      <div id="knob"></div>
+      <div id="objTxt"></div>
+    </section>
+
+    <script>
+      let objParams = {
+        id: "knob",
+        size: "xlarge",
+        type: "kjLED",
+        lowVal: 2,
+        highVal: 20
+      };
+
+      function printObj() {
+        //get the keys and values of the object
+        let keys = Object.keys(objParams);
+        let values = Object.values(objParams);
+        //print the objects opening curley brace
+        document.getElementById("objTxt").innerHTML = "{<br />";
+        //now print the contents of the object
+        for (let i = 0; i < keys.length; i++) {
+          // check which values need to be encased in quotation marks
+          if (
+            keys[i] == "id" ||
+            keys[i] == "size" ||
+            keys[i] == "type" ||
+            keys[i] == "lblTxtColor"
+          ) {
+            document.getElementById("objTxt").innerHTML += `&nbsp&nbsp&nbsp${
+              keys[i]
+            }: "${values[i]}"`;
+          } else {
+            //value is not a string so no quotes needed
+            document.getElementById("objTxt").innerHTML += `&nbsp&nbsp&nbsp${
+              keys[i]
+            }: ${values[i]}`;
+          } //don't include a comma on the last item
+          i == keys.length - 1
+            ? (document.getElementById("objTxt").innerHTML += "<br>")
+            : (document.getElementById("objTxt").innerHTML += ", <br>");
+        }
+        //print the objects closing curley brace
+        document.getElementById("objTxt").innerHTML += "}";
+      }
+
+      let knob = new Knob(objParams);
+
+      //print the object
+      printObj();
+
+      function resetForm() {
+        document.getElementById("mainForm").reset();
+      }
+    </script>
+    <footer></footer>
   </body>
 </html>
