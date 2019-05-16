@@ -31,12 +31,14 @@
         highVal: 100,
         value: 0,
         size: "large",
-        lblTxtColor: "black"
+        lblTxtColor: "black",
+        sensitivity: 0.5
       });
       let dial2 = new Knob({
         id: "knob2",
         type: "Vintage",
-        size: "large"
+        size: "large",
+        sensitivity: 1.5
       });
       let dial3 = new Knob({
         id: "knob3",
@@ -101,7 +103,7 @@
 
       //knob changed event
       function knobChanged(id, val) {
-        //console.log(`knob with ID: ${id} change to ${val}`);
+        console.log(`knob with ID: ${id} change to ${val}`);
       }
 
       //dial1.setValue(20) //the way to set a value
