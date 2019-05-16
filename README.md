@@ -2,7 +2,9 @@
 
 Add audio knobs (dials) to your web app. Ideal for web audio API based projects
 
-<img src="docs/images/js_knobs.png" width="200px">
+<p align="center">
+   <img src="docs/images/js_knobs.png" width="600px">
+</p>
 
 ## Getting started
 
@@ -31,15 +33,15 @@ When you create a knob and pass in the object providing the div ID, you can also
 
 ```javascript
 {
-  (id = "knob1"), // the ID of the div you want the knob to live in
-    (lowVal = 0), // the minimum value the knob goes to - set this to whatever you like
-    (highVal = 100), // the maximum value the knob goes to - again, set this to whatever you like
-    (value = 0), // the initial value
-    (size = "medium"), // choices: xsmall, small, medium, large, xlarge
-    (sensitivity = 1), // try 0.5 to make the knob less sensitive to mouse movements, 1.5 for bigger knob changes relative to mouse moves
-    (type = "LittlePhatty"), //alternatives: Vintage, FStyle, SSLish, RedScale, Silver, Aqua, kjLED, Credence, Wedge, Hexagonal, Hippy, Bluesbreaker, Oscar
-    (label = true), // or false. Do you want to see a numeric readout of the value below the knob?
-    (lblTxtColor = "silver"); // or "#C0C0C0" or any other css colour you like
+    id = "knob1", // the ID of the div you want the knob to live in
+    lowVal = 0, // the minimum value the knob goes to - set this to whatever you like
+    highVal = 100, // the maximum value the knob goes to - again, set this to whatever you like
+    value = 0, // the initial value
+    size = "medium", // choices: xsmall, small, medium, large, xlarge
+    sensitivity = 1, // try 0.5 to make the knob less sensitive to mouse movements, 1.5 for bigger knob changes relative to mouse moves
+    type = "LittlePhatty", //alternatives: Vintage, FStyle, SSLish, RedScale, Silver, Aqua, kjLED, Credence, Wedge, Hexagonal, Hippy, Bluesbreaker, Oscar
+    label = true, // or false. Do you want to see a numeric readout of the value below the knob?
+    lblTxtColor = "silver"; // or "#C0C0C0" or any other css colour you like
 }
 ```
 
@@ -53,6 +55,6 @@ linkedin.com/in/colinbonedodds
 
 ## Acknowledgements
 
-Knobs were created using [KnobMan](https://www.g200kg.com/en/webknobman/gallery.php)
+Knobs were rendered using [KnobMan](https://www.g200kg.com/en/webknobman/gallery.php) - thanks to the people who created the original designs!
 
 All knobs used are CC0 Public Domain licensed
