@@ -39,11 +39,20 @@
           <span id="hint"
             >what is the ID of the div you will be housing the knob in?</span
           ><br />
-          div ID: <input type="text" name="id" /> <br /><br />
+          div ID:
+          <input
+            type="text"
+            id="id"
+            onchange="changeID()"
+            onkeypress="this.onchange()"
+            onpaste="this.onchange()"
+            oninput="this.onchange()"
+          />
+          <br /><br />
           <!-- type -->
           <span id="hint">what style of knob would you like?</span><br />
           style:
-          <select name="knobType">
+          <select id="knobType" onChange="changeType()">
             <option value="LittlePhatty">LittlePhatty</option>
             <option value="Vintage">Vintage</option>
             <option value="FStyle">FStyle</option>
@@ -83,23 +92,59 @@
             >what the minimum value the knob should output? you must set an
             integer value</span
           ><br />
-          minimum: <input type="text" name="min" /> <br /><br />
+          minimum:
+          <input
+            type="text"
+            id="lowVal"
+            onchange="changeLowVal()"
+            onkeypress="this.onchange()"
+            onpaste="this.onchange()"
+            oninput="this.onchange()"
+          />
+          <br /><br />
           <!-- max value -->
           <span id="hint"
             >what the maximum value the knob should output? you must set an
             integer value</span
           ><br />
-          maximum: <input type="text" name="max" /> <br /><br />
+          maximum:
+          <input
+            type="text"
+            id="highVal"
+            onchange="changeHighVal()"
+            onkeypress="this.onchange()"
+            onpaste="this.onchange()"
+            oninput="this.onchange()"
+          />
+          <br /><br />
           <!-- value -->
           <span id="hint">set the initial value for the knob</span><br />
-          value: <input type="text" name="val" /> <br /><br />
+          value:
+          <input
+            type="text"
+            id="value"
+            onchange="changeValue()"
+            onkeypress="this.onchange()"
+            onpaste="this.onchange()"
+            oninput="this.onchange()"
+          />
+          <br /><br />
           <!-- sensitivity -->
           <span id="hint"
             >how much should mouse moves change the knob? less than 1 will make
             it less sensitive to mouse movements, greater than 1 for greater
             sensitivity</span
           ><br />
-          sensitivity: <input type="text" name="sensitivity" /> <br /><br />
+          sensitivity:
+          <input
+            type="text"
+            id="sensitivity"
+            onchange="changeSensitivity()"
+            onkeypress="this.onchange()"
+            onpaste="this.onchange()"
+            oninput="this.onchange()"
+          />
+          <br /><br />
           <!-- label -->
           <!-- size -->
           <span id="hint"
@@ -116,7 +161,16 @@
             >you can set the colour of the label just enter a css colour name or
             HEX code</span
           ><br />
-          label colour: <input type="text" name="lblColour" /> <br /><br />
+          label colour:
+          <input
+            type="text"
+            id="lblTxtColour"
+            onchange="changeLblColour()"
+            onkeypress="this.onchange()"
+            onpaste="this.onchange()"
+            oninput="this.onchange()"
+          />
+          <br /><br />
         </form>
         <button class="button" onclick="resetForm()">reset</button>
       </div>
@@ -127,13 +181,25 @@
     </section>
 
     <script>
+      //the object that gets printed to the screen
       let objParams = {
         id: "knob",
-        size: "xlarge",
-        type: "kjLED",
-        lowVal: 2,
-        highVal: 20
+        size: "large",
+        type: "LittlePhatty"
       };
+
+      //the object which actuall builds the knob on screen - the ID param might be different
+      let objRealParams = {
+        id: "knob",
+        size: "large",
+        type: "LittlePhatty"
+      };
+
+      //build the knob and place it on screen
+      let knob = new Knob(objRealParams);
+
+      //print the object to screen
+      printObj();
 
       function printObj() {
         //get the keys and values of the object
@@ -167,13 +233,112 @@
         document.getElementById("objTxt").innerHTML += "}";
       }
 
-      let knob = new Knob(objParams);
+      //build the knob
+      function buildKnob() {
+        //first clone objParams into objRealParams
+        objRealParams = JSON.parse(JSON.stringify(objParams));
+        //change the ID to our real ID
+        objRealParams.id = "knob";
+        //clear the knob from the div
+        document.getElementById("knob").innerHTML = "";
+        //know re-add the knob
+        knob = new Knob(objRealParams);
+      }
 
-      //print the object
-      printObj();
+      /***** form functions *****/
 
+      //reset form
       function resetForm() {
         document.getElementById("mainForm").reset();
+        objParams = {};
+        printObj();
+      }
+
+      //ID changed
+      function changeID() {
+        let txt = document.getElementById("id").value;
+        if (txt == "") {
+          delete objParams.id;
+        } else {
+          objParams.id = document.getElementById("id").value;
+        }
+        printObj();
+        buildKnob();
+      }
+
+      //knob type changed
+      function changeType() {
+        objParams.type = document.getElementById("knobType").value;
+        printObj();
+        buildKnob();
+      }
+
+      //knob size changed
+      // function changeSize() {
+      //   objParams.size = document.getElementById("knobType").value;
+      //   printObj();
+      // }
+
+      //knob lowVal changed
+      function changeLowVal() {
+        let txt = document.getElementById("lowVal").value;
+        if (txt == "") {
+          delete objParams.lowVal;
+        } else {
+          objParams.lowVal = document.getElementById("lowVal").value;
+        }
+        printObj();
+        buildKnob();
+      }
+
+      //knob highVal changed
+      function changeHighVal() {
+        let txt = document.getElementById("highVal").value;
+        if (txt == "") {
+          delete objParams.highVal;
+        } else {
+          objParams.highVal = document.getElementById("highVal").value;
+        }
+        printObj();
+        buildKnob();
+      }
+
+      //knob value changed
+      function changeValue() {
+        let txt = document.getElementById("value").value;
+        if (txt == "") {
+          delete objParams.value;
+        } else {
+          objParams.value = document.getElementById("value").value;
+        }
+        printObj();
+        buildKnob();
+      }
+
+      //sensitivity changed
+      function changeSensitivity() {
+        let txt = document.getElementById("sensitivity").value;
+        if (txt == "") {
+          delete objParams.sensitivity;
+        } else {
+          objParams.sensitivity = document.getElementById("sensitivity").value;
+        }
+        printObj();
+        buildKnob();
+      }
+
+      //knob label changed
+
+      //knob lblTxtColor changed
+      function changeLblColour() {
+        let txt = document.getElementById("lblTxtColour").value;
+        if (txt == "") {
+          delete objParams.lblTxtColor;
+        } else {
+          objParams.lblTxtColor = document.getElementById("lblTxtColour").value;
+        }
+        printObj();
+        buildKnob();
       }
     </script>
     <footer></footer>
