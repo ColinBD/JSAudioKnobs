@@ -54,10 +54,10 @@ Or if you want to just do it yourself, you can set the following parameters to o
 ## Author
 
 Colin Bone Dodds  
-[github.com/colinbd](https://github.com/colinbd) 
-[colinbd.com](https://colinbd.com)  
-colinbonedodds@gmail.com  
-[linkedin.com/in/colinbonedodds](https://linkedin.com/in/colinbonedodds)
+[github.com/colinbd](https://github.com/colinbd)   
+[colinbd.com](https://colinbd.com)    
+colinbonedodds@gmail.com    
+[linkedin.com/in/colinbonedodds](https://linkedin.com/in/colinbonedodds)  
 
 ## Acknowledgements
 
