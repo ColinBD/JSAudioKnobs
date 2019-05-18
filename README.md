@@ -39,15 +39,15 @@ Or if you want to just do it yourself, you can set the following parameters to o
 
 ```javascript
 {
-  (id = "knob1"), // the ID of the div you want the knob to live in
-    (lowVal = 0), // the minimum value the knob goes to - set this to whatever you like
-    (highVal = 100), // the maximum value the knob goes to - again, set this to whatever you like
-    (value = 0), // the initial value
-    (size = "medium"), // choices: xsmall, small, medium, large, xlarge
-    (sensitivity = 1), // try 0.5 to make the knob less sensitive to mouse movements, 1.5 for bigger knob changes relative to mouse moves
-    (type = "LittlePhatty"), //alternatives: Vintage, FStyle, SSLish, RedScale, Silver, Aqua, kjLED, Credence, Wedge, Hexagonal, Hippy, Bluesbreaker, Oscar
-    (label = true), // or false. Do you want to see a numeric readout of the value below the knob?
-    (lblTxtColor = "silver"); // or "#C0C0C0" or any other css colour you like
+    id = "knob1", // the ID of the div you want the knob to live in
+    lowVal = 0, // the minimum value the knob goes to - set this to whatever you like
+    highVal = 100, // the maximum value the knob goes to - again, set this to whatever you like
+    value = 0, // the initial value
+    size = "medium", // choices: xsmall, small, medium, large, xlarge
+    sensitivity = 1, // try 0.5 to make the knob less sensitive to mouse movements, 1.5 for bigger knob changes relative to mouse moves
+    type = "LittlePhatty", //alternatives: Vintage, FStyle, SSLish, RedScale, Silver, Aqua, kjLED, Credence, Wedge, Hexagonal, Hippy, Bluesbreaker, Oscar
+    label = true, // or false. Do you want to see a numeric readout of the value below the knob?
+    lblTxtColor = "silver" // or "#C0C0C0" or any other css colour you like
 }
 ```
 
