@@ -45,9 +45,9 @@ class Knob {
       this.size = 50;
     } else if (size == "small") {
       this.size = 40;
-    } else (size == "xsmall") {
+    } else {
       this.size = 30;
-    } 
+    }
     //set the image file. Format is e.g. "LittlePhatty/LittlePhatty_40.png";
     this.imgFile = `${this.type}/${this.type}_${this.size}.png`;
 
