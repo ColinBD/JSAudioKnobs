@@ -1,6 +1,6 @@
-/*to do
-1) allow the loading of knobs of 4 different sizes 30,50,85,128
-*/
+/********************************* 
+JS Audio Knobs by Colin Bone Dodds
+*********************************/
 
 let madeGlobalEventHandlers = false; //checked during each Knob class instantiation. Only the first instantiation creates the event handlers.
 
@@ -45,184 +45,12 @@ class Knob {
       this.size = 50;
     } else if (size == "small") {
       this.size = 40;
-    } else if (size == "xsmall") {
+    } else (size == "xsmall") {
       this.size = 30;
-    } else {
-      //user provides their own size for a custom image
-      this.size = size;
-    }
-    //set the image file
-    //LittlePhatty
-    if (this.type == "LittlePhatty" && this.size == 30) {
-      this.imgFile = "LittlePhatty/LittlePhatty_30.png";
-    } else if (this.type == "LittlePhatty" && this.size == 40) {
-      this.imgFile = "LittlePhatty/LittlePhatty_40.png";
-    } else if (this.type == "LittlePhatty" && this.size == 50) {
-      this.imgFile = "LittlePhatty/LittlePhatty_50.png";
-    } else if (this.type == "LittlePhatty" && this.size == 85) {
-      this.imgFile = "LittlePhatty/LittlePhatty_85.png";
-    } else if (this.type == "LittlePhatty" && this.size == 128) {
-      this.imgFile = "LittlePhatty/LittlePhatty_128.png";
-    }
-    //Vintage
-    else if (this.type == "Vintage" && this.size == 30) {
-      this.imgFile = "Vintage/Vintage_30.png";
-    } else if (this.type == "Vintage" && this.size == 40) {
-      this.imgFile = "Vintage/Vintage_40.png";
-    } else if (this.type == "Vintage" && this.size == 50) {
-      this.imgFile = "Vintage/Vintage_50.png";
-    } else if (this.type == "Vintage" && this.size == 85) {
-      this.imgFile = "Vintage/Vintage_85.png";
-    } else if (this.type == "Vintage" && this.size == 128) {
-      this.imgFile = "Vintage/Vintage_128.png";
-    }
-    //FStyle
-    else if (this.type == "FStyle" && this.size == 30) {
-      this.imgFile = "FStyle/FStyle_30.png";
-    } else if (this.type == "FStyle" && this.size == 40) {
-      this.imgFile = "FStyle/FStyle_40.png";
-    } else if (this.type == "FStyle" && this.size == 50) {
-      this.imgFile = "FStyle/FStyle_50.png";
-    } else if (this.type == "FStyle" && this.size == 85) {
-      this.imgFile = "FStyle/FStyle_85.png";
-    } else if (this.type == "FStyle" && this.size == 128) {
-      this.imgFile = "FStyle/FStyle_128.png";
-    }
-    //SSLish
-    else if (this.type == "SSLish" && this.size == 30) {
-      this.imgFile = "SSLish/SSLish_30.png";
-    } else if (this.type == "SSLish" && this.size == 40) {
-      this.imgFile = "SSLish/SSLish_40.png";
-    } else if (this.type == "SSLish" && this.size == 50) {
-      this.imgFile = "SSLish/SSLish_50.png";
-    } else if (this.type == "SSLish" && this.size == 85) {
-      this.imgFile = "SSLish/SSLish_85.png";
-    } else if (this.type == "SSLish" && this.size == 128) {
-      this.imgFile = "SSLish/SSLish_128.png";
-    }
-    //RedScale
-    else if (this.type == "RedScale" && this.size == 30) {
-      this.imgFile = "RedScale/RedScale_30.png";
-    } else if (this.type == "RedScale" && this.size == 40) {
-      this.imgFile = "RedScale/RedScale_40.png";
-    } else if (this.type == "RedScale" && this.size == 50) {
-      this.imgFile = "RedScale/RedScale_50.png";
-    } else if (this.type == "RedScale" && this.size == 85) {
-      this.imgFile = "RedScale/RedScale_85.png";
-    } else if (this.type == "RedScale" && this.size == 128) {
-      this.imgFile = "RedScale/RedScale_128.png";
-    }
-    //Silver
-    else if (this.type == "Silver" && this.size == 30) {
-      this.imgFile = "Silver/Silver_30.png";
-    } else if (this.type == "Silver" && this.size == 40) {
-      this.imgFile = "Silver/Silver_40.png";
-    } else if (this.type == "Silver" && this.size == 50) {
-      this.imgFile = "Silver/Silver_50.png";
-    } else if (this.type == "Silver" && this.size == 85) {
-      this.imgFile = "Silver/Silver_85.png";
-    } else if (this.type == "Silver" && this.size == 128) {
-      this.imgFile = "Silver/Silver_128.png";
-    }
-    //Aqua
-    else if (this.type == "Aqua" && this.size == 30) {
-      this.imgFile = "Aqua/Aqua_30.png";
-    } else if (this.type == "Aqua" && this.size == 40) {
-      this.imgFile = "Aqua/Aqua_40.png";
-    } else if (this.type == "Aqua" && this.size == 50) {
-      this.imgFile = "Aqua/Aqua_50.png";
-    } else if (this.type == "Aqua" && this.size == 85) {
-      this.imgFile = "Aqua/Aqua_85.png";
-    } else if (this.type == "Aqua" && this.size == 128) {
-      this.imgFile = "Aqua/Aqua_128.png";
-    }
-    //kjLED
-    else if (this.type == "kjLED" && this.size == 30) {
-      this.imgFile = "kjLED/kjLED_30.png";
-    } else if (this.type == "kjLED" && this.size == 40) {
-      this.imgFile = "kjLED/kjLED_40.png";
-    } else if (this.type == "kjLED" && this.size == 50) {
-      this.imgFile = "kjLED/kjLED_50.png";
-    } else if (this.type == "kjLED" && this.size == 85) {
-      this.imgFile = "kjLED/kjLED_85.png";
-    } else if (this.type == "kjLED" && this.size == 128) {
-      this.imgFile = "kjLED/kjLED_128.png";
-    }
-    //Credence
-    else if (this.type == "Credence" && this.size == 30) {
-      this.imgFile = "Credence/Credence_30.png";
-    } else if (this.type == "Credence" && this.size == 40) {
-      this.imgFile = "Credence/Credence_40.png";
-    } else if (this.type == "Credence" && this.size == 50) {
-      this.imgFile = "Credence/Credence_50.png";
-    } else if (this.type == "Credence" && this.size == 85) {
-      this.imgFile = "Credence/Credence_85.png";
-    } else if (this.type == "Credence" && this.size == 128) {
-      this.imgFile = "Credence/Credence_128.png";
-    }
-    //Wedge
-    else if (this.type == "Wedge" && this.size == 30) {
-      this.imgFile = "Wedge/Wedge_30.png";
-    } else if (this.type == "Wedge" && this.size == 40) {
-      this.imgFile = "Wedge/Wedge_40.png";
-    } else if (this.type == "Wedge" && this.size == 50) {
-      this.imgFile = "Wedge/Wedge_50.png";
-    } else if (this.type == "Wedge" && this.size == 85) {
-      this.imgFile = "Wedge/Wedge_85.png";
-    } else if (this.type == "Wedge" && this.size == 128) {
-      this.imgFile = "Wedge/Wedge_128.png";
-    }
-    //Hexagonal
-    else if (this.type == "Hexagonal" && this.size == 30) {
-      this.imgFile = "Hexagonal/Hexagonal_30.png";
-    } else if (this.type == "Hexagonal" && this.size == 40) {
-      this.imgFile = "Hexagonal/Hexagonal_40.png";
-    } else if (this.type == "Hexagonal" && this.size == 50) {
-      this.imgFile = "Hexagonal/Hexagonal_50.png";
-    } else if (this.type == "Hexagonal" && this.size == 85) {
-      this.imgFile = "Hexagonal/Hexagonal_85.png";
-    } else if (this.type == "Hexagonal" && this.size == 128) {
-      this.imgFile = "Hexagonal/Hexagonal_128.png";
-    }
-    //Hippy
-    else if (this.type == "Hippy" && this.size == 30) {
-      this.imgFile = "Hippy/Hippy_30.png";
-    } else if (this.type == "Hippy" && this.size == 40) {
-      this.imgFile = "Hippy/Hippy_40.png";
-    } else if (this.type == "Hippy" && this.size == 50) {
-      this.imgFile = "Hippy/Hippy_50.png";
-    } else if (this.type == "Hippy" && this.size == 85) {
-      this.imgFile = "Hippy/Hippy_85.png";
-    } else if (this.type == "Hippy" && this.size == 128) {
-      this.imgFile = "Hippy/Hippy_128.png";
-    }
-    //Bluesbreaker
-    else if (this.type == "Bluesbreaker" && this.size == 30) {
-      this.imgFile = "Bluesbreaker/Bluesbreaker_30.png";
-    } else if (this.type == "Bluesbreaker" && this.size == 40) {
-      this.imgFile = "Bluesbreaker/Bluesbreaker_40.png";
-    } else if (this.type == "Bluesbreaker" && this.size == 50) {
-      this.imgFile = "Bluesbreaker/Bluesbreaker_50.png";
-    } else if (this.type == "Bluesbreaker" && this.size == 85) {
-      this.imgFile = "Bluesbreaker/Bluesbreaker_85.png";
-    } else if (this.type == "Bluesbreaker" && this.size == 128) {
-      this.imgFile = "Bluesbreaker/Bluesbreaker_128.png";
-    }
-    //Oscar
-    else if (this.type == "Oscar" && this.size == 30) {
-      this.imgFile = "Oscar/Oscar_30.png";
-    } else if (this.type == "Oscar" && this.size == 40) {
-      this.imgFile = "Oscar/Oscar_40.png";
-    } else if (this.type == "Oscar" && this.size == 50) {
-      this.imgFile = "Oscar/Oscar_50.png";
-    } else if (this.type == "Oscar" && this.size == 85) {
-      this.imgFile = "Oscar/Oscar_85.png";
-    } else if (this.type == "Oscar" && this.size == 128) {
-      this.imgFile = "Oscar/Oscar_128.png";
-    } else {
-      console.log("going with the default"); //just for testing
-      this.imgFile = "LittlePhatty/LittlePhatty_40.png";
-    }
+    } 
+    //set the image file. Format is e.g. "LittlePhatty/LittlePhatty_40.png";
+    this.imgFile = `${this.type}/${this.type}_${this.size}.png`;
+
     //run the initializer method
     this.setUpKnob();
   }
