@@ -9,7 +9,7 @@ Add audio knobs (dials) to your web app. Ideal for web audio API based projects
 ## Getting started
 
 1. Download the source and place the jsaudioknobs folder beside your html files
-2. Place the link to the knobs.js file at the bottom of the <head> section of your html file
+2. Place the link to the knobs.js file at the bottom of the *head* section of your html file
    `<script src="./jsaudioknobs/knobs.js"></script>`
 3. Within the body of your html create a div where you want a knob to reside and give it the class of 'knob' and a unique ID
    `<div class="knob" id="knob1"></div>`
