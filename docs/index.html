@@ -1,8 +1,5 @@
 <!-- TO DO 
-1) form entries modify the objParams object
-2) each form modification causes the current knob to be destroyed and a new one created passing in the new object
-  > only make the call to destroy current knob once a user clicks away from a text entry box 
-    > we don't want to be continually making this call for each letter typed
+1) get the 2 sets of radio buttons working
 -->
 
 <!DOCTYPE html>
@@ -71,22 +68,42 @@
           <br /><br />
           <!-- size -->
           <span id="hint">what size would you like the knob to be?</span><br />
-          <input type="radio" name="size" value="xsmall" /><span id="radioSize"
-            >xsmall</span
-          >
-          <input type="radio" name="size" value="small" /><span id="radioSize"
-            >small</span
-          >
-          <input type="radio" name="size" value="medium" checked /><span
-            id="radioSize"
-            >medium</span
-          >
-          <input type="radio" name="size" value="large" /><span id="radioSize"
-            >large</span
-          >
-          <input type="radio" name="size" value="xlarge" /><span id="radioSize"
-            >xlarge</span
-          ><br /><br />
+          <input
+            type="radio"
+            value="xsmall"
+            id="sizeXS"
+            name="size"
+            onchange="changeSize()"
+          /><span id="radioSize">xsmall</span>
+          <input
+            type="radio"
+            id="sizeS"
+            value="small"
+            name="size"
+            onchange="changeSize()"
+          /><span id="radioSize">small</span>
+          <input
+            type="radio"
+            id="sizeM"
+            value="medium"
+            checked
+            name="size"
+            onchange="changeSize()"
+          /><span id="radioSize">medium</span>
+          <input
+            type="radio"
+            id="sizeL"
+            value="large"
+            name="size"
+            onchange="changeSize()"
+          /><span id="radioSize">large</span>
+          <input
+            type="radio"
+            id="sizeXL"
+            value="xlarge"
+            name="size"
+            onchange="changeSize()"
+          /><span id="radioSize">xlarge</span><br /><br />
           <!-- min value -->
           <span id="hint"
             >what the minimum value the knob should output? you must set an
@@ -152,10 +169,20 @@
             knob?</span
           ><br />
           show the label?
-          <input type="radio" name="lbl" value="true" /><span id="radioSize"
-            >show</span
-          >
-          <input type="radio" name="lbl" value="false" />hide<br /><br />
+          <input
+            type="radio"
+            name="lbl"
+            id="lblShow"
+            value="true"
+            onchange="lblChanged()"
+          /><span id="radioSize">show</span>
+          <input
+            type="radio"
+            name="lbl"
+            id="lblHide"
+            value="false"
+            onchange="lblChanged()"
+          />hide<br /><br />
           <!-- lblTxtColor -->
           <span id="hint"
             >you can set the colour of the label just enter a css colour name or
@@ -177,21 +204,27 @@
     </section>
     <section id="output">
       <div id="knob"></div>
-      <div id="objTxt"></div>
+      <div id="objTxtWrapper">
+        <div id="label">
+          pass this object when creating a new class instance <br />
+          e.g. let knob1 = new Knob({ <i>object goes here</i> })
+        </div>
+        <div id="objTxt"></div>
+      </div>
     </section>
 
     <script>
       //the object that gets printed to the screen
       let objParams = {
         id: "knob",
-        size: "large",
+        size: "medium",
         type: "LittlePhatty"
       };
 
       //the object which actuall builds the knob on screen - the ID param might be different
       let objRealParams = {
         id: "knob",
-        size: "large",
+        size: "medium",
         type: "LittlePhatty"
       };
 
@@ -250,8 +283,13 @@
       //reset form
       function resetForm() {
         document.getElementById("mainForm").reset();
-        objParams = {};
+        objParams = {
+          id: "knob",
+          size: "medium",
+          type: "LittlePhatty"
+        };
         printObj();
+        buildKnob();
       }
 
       //ID changed
@@ -274,10 +312,21 @@
       }
 
       //knob size changed
-      // function changeSize() {
-      //   objParams.size = document.getElementById("knobType").value;
-      //   printObj();
-      // }
+      function changeSize() {
+        if (document.getElementById("sizeXS").checked == true) {
+          objParams.size = "xsmall";
+        } else if (document.getElementById("sizeS").checked == true) {
+          objParams.size = "small";
+        } else if (document.getElementById("sizeM").checked == true) {
+          objParams.size = "medium";
+        } else if (document.getElementById("sizeL").checked == true) {
+          objParams.size = "large";
+        } else if (document.getElementById("sizeXL").checked == true) {
+          objParams.size = "xlarge";
+        }
+        printObj();
+        buildKnob();
+      }
 
       //knob lowVal changed
       function changeLowVal() {
@@ -285,7 +334,7 @@
         if (txt == "") {
           delete objParams.lowVal;
         } else {
-          objParams.lowVal = document.getElementById("lowVal").value;
+          objParams.lowVal = parseInt(txt);
         }
         printObj();
         buildKnob();
@@ -297,7 +346,7 @@
         if (txt == "") {
           delete objParams.highVal;
         } else {
-          objParams.highVal = document.getElementById("highVal").value;
+          objParams.highVal = parseInt(txt);
         }
         printObj();
         buildKnob();
@@ -309,7 +358,7 @@
         if (txt == "") {
           delete objParams.value;
         } else {
-          objParams.value = document.getElementById("value").value;
+          objParams.value = parseInt(txt);
         }
         printObj();
         buildKnob();
@@ -321,13 +370,22 @@
         if (txt == "") {
           delete objParams.sensitivity;
         } else {
-          objParams.sensitivity = document.getElementById("sensitivity").value;
+          objParams.sensitivity = parseInt(txt);
         }
         printObj();
         buildKnob();
       }
 
       //knob label changed
+      function lblChanged() {
+        if (document.getElementById("lblShow").checked == true) {
+          objParams.label = true;
+        } else if (document.getElementById("lblHide").checked == true) {
+          objParams.label = false;
+        }
+        printObj();
+        buildKnob();
+      }
 
       //knob lblTxtColor changed
       function changeLblColour() {
