@@ -59,7 +59,8 @@ class Knob {
     let div = document.getElementById(this.id);
     //setup div contents
     let imgDiv = document.createElement("div");
-    let src = "./jsaudioknobs/knobs/" + this.imgFile;
+    // let src = "./knob_Images/" + this.imgFile;
+    let src = "https://colinbd.github.io/JSAudioKnobs/knobs/" + this.imgFile;
     imgDiv.innerHTML = `<img draggable='false' style='pointer-events: none; transform: translateY(0px);' src=${src}>`;
     let lblDiv = document.createElement("div");
     div.appendChild(imgDiv);

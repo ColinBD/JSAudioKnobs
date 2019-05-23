@@ -1,6 +1,6 @@
-/*to do
-1) allow the loading of knobs of 4 different sizes 30,50,85,128
-*/
+/********************************* 
+JS Audio Knobs by Colin Bone Dodds
+*********************************/
 
 let madeGlobalEventHandlers = false; //checked during each Knob class instantiation. Only the first instantiation creates the event handlers.
 
@@ -59,7 +59,10 @@ class Knob {
     let div = document.getElementById(this.id);
     //setup div contents
     let imgDiv = document.createElement("div");
-    let src = "./jsaudioknobs/knobs/" + this.imgFile;
+    // let src = "./knob_Images/" + this.imgFile;
+    let src =
+      "https://colinbd.github.io/JSAudioKnobs/jsaudioknobs/knobs/" +
+      this.imgFile;
     imgDiv.innerHTML = `<img draggable='false' style='pointer-events: none; transform: translateY(0px);' src=${src}>`;
     let lblDiv = document.createElement("div");
     div.appendChild(imgDiv);
