@@ -12,7 +12,7 @@ Add audio knobs (dials) to your web app. Ideal for web audio API based projects
    `<script src="https://colinbd.github.io/JSAudioKnobs/knobs.js"></script>`
 2. Within the body of your html create a div where you want a knob to reside and give it the class of 'knob' and a unique ID
    `<div class="knob" id="knob1"></div>`
-3. Within your main script (which must be below the knobs.js script) create a knob by calling new Knob and passing in the ID of the div you want to place the knob in
+3. Create a script at the bottom of your body section. Then create a knob by calling new Knob and passing in the ID of the div you want to place the knob in
    `let dial1 = new Knob({id: "knob1"});`
 4. A knob should be visible on your page, configured with the defaults
 5. You can pass in more parameters when making an instance of the class to configure the knob to your requirements - [use the interactive knob builder to design your knob, then just copy the object which is output](https://colinbd.github.io/JSAudioKnobs)
