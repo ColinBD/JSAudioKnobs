@@ -50,6 +50,10 @@ Or if you want to just do it yourself, you can set the following parameters to o
 }
 ```
 
+## Check the fiddle
+
+[check out this this jsfiddle](https://jsfiddle.net/theColin/tkb5yq72/)
+
 ## Author
 
 Colin Bone Dodds  
