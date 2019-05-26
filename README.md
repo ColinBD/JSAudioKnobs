@@ -15,13 +15,13 @@ Add audio knobs (dials) to your web app. Ideal for web audio API based projects
 EITHER do it the easy way:
 
 1. Place the following link at the bottom of the _head_ section of your html file
-   `<script src="https://colinbd.github.io/JSAudioKnobs/knobs.js"></script>`
+   `<script src="https://colinbd.github.io/JSAudioKnobs/knobs.js"></script>`  
    OR the hard way:
 1. Download the source and place knobs.js and the knob_Images folder within your project directory.
 1. Link to the knobs.js script
    `<script src="/path/to/knobs.js"></script>`
 1. Edit knobs.js line 64 to reflect the path to the knob_Images folder
-   `./path/to/knob_Images/`
+   `./path/to/knob_Images/`  
    THEN
 1. Within the body of your html create a div where you want a knob to reside and give it the class of 'knob' and a unique ID
    `<div class="knob" id="knob1"></div>`
