@@ -85,6 +85,20 @@ class Knob {
       }.bind(this) //we must bind 'this' to the event listener (or use 'let that = this', then set values to 'that')
     );
 
+    //as above for touch event
+    imgDiv.addEventListener(
+      "touchstart",
+      function(e) {
+        //set the knobInUse object
+        knobInUse = {
+          id: this.id,
+          initY: e.pageY,
+          value: this.currentValue, //storing the value
+          currentKnob: this //storing the reference
+        };
+      }.bind(this) //we must bind 'this' to the event listener (or use 'let that = this', then set values to 'that')
+    );
+
     //do we need to make the global event handlers? - they only get made on the first knob instantiation
     if (madeGlobalEventHandlers == false) {
       createGlobalEventHandlers();
@@ -159,6 +173,17 @@ function createGlobalEventHandlers() {
 
   //mouseup global event handler > resets the knobinuse object to show no knob in use
   document.body.addEventListener("mouseup", function(e) {
+    //reset the knobInUse object
+    resetKnobInUse(e);
+  });
+
+  //as above for touchend event
+  document.body.addEventListener("touchend", function(e) {
+    //reset the knobInUse object
+    resetKnobInUse(e);
+  });
+
+  function resetKnobInUse() {
     //set the knobInUse object
     knobInUse = {
       id: "",
@@ -166,21 +191,30 @@ function createGlobalEventHandlers() {
       value: 0,
       currentKnob: null
     };
-  });
+  }
 
   //mousemove global event handler > does the bulk of the work
   document.body.addEventListener("mousemove", function(e) {
+    dragging(e);
+  });
+  //touchmove global event handler > does the bulk of the work
+  document.body.addEventListener("touchmove", function(e) {
+    draggin(e);
+  });
+
+  function dragging(pos) {
     if (knobInUse.id != "") {
       //console.log(e.pageY); //for testing
       //freeze mouse drag activity if user hits top or bottom of the page
-      if (e.pageY <= 10 || e.pageY >= document.body.clientHeight - 10) {
+      if (pos.pageY <= 10 || pos.pageY >= document.body.clientHeight - 10) {
         knobInUse = { id: "", initY: 0, currentKnob: null };
         return;
       } else {
         //calculate new knob value
         knobInUse.currentKnob.currentValue = Math.round(
           knobInUse.value +
-            ((knobInUse.initY - e.pageY) * knobInUse.currentKnob.sensitivity) /
+            ((knobInUse.initY - pos.pageY) *
+              knobInUse.currentKnob.sensitivity) /
               knobInUse.currentKnob.scaler
         );
         //use max/min variables for easier reading
@@ -221,5 +255,5 @@ function createGlobalEventHandlers() {
         knobChanged(knobInUse.id, knobInUse.currentKnob.currentValue);
       }
     }
-  });
+  }
 }
