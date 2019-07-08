@@ -94,7 +94,7 @@ class Knob {
         //set the knobInUse object
         knobInUse = {
           id: this.id,
-          initY: e.pageY,
+          initY: e.targetTouches[0].pageY,
           value: this.currentValue, //storing the value
           currentKnob: this //storing the reference
         };
@@ -197,25 +197,75 @@ function createGlobalEventHandlers() {
 
   //mousemove global event handler > does the bulk of the work
   document.body.addEventListener("mousemove", function(e) {
-    dragging(e);
-  });
-  //touchmove global event handler > does the bulk of the work
-  document.body.addEventListener("touchmove", function(e) {
-    draggin(e);
-  });
-
-  function dragging(pos) {
     if (knobInUse.id != "") {
       //console.log(e.pageY); //for testing
       //freeze mouse drag activity if user hits top or bottom of the page
-      if (pos.pageY <= 10 || pos.pageY >= document.body.clientHeight - 10) {
+      if (e.pageY <= 10 || e.pageY >= document.body.clientHeight - 10) {
         knobInUse = { id: "", initY: 0, currentKnob: null };
         return;
       } else {
         //calculate new knob value
         knobInUse.currentKnob.currentValue = Math.round(
           knobInUse.value +
-            ((knobInUse.initY - pos.pageY) *
+            ((knobInUse.initY - e.pageY) * knobInUse.currentKnob.sensitivity) /
+              knobInUse.currentKnob.scaler
+        );
+        //use max/min variables for easier reading
+        let max = knobInUse.currentKnob.highVal,
+          min = knobInUse.currentKnob.lowVal;
+
+        //ensure the know value does not exceed max and/or minimum values
+        if (knobInUse.currentKnob.currentValue > max) {
+          knobInUse.currentKnob.currentValue = max;
+        } else if (knobInUse.currentKnob.currentValue < min) {
+          knobInUse.currentKnob.currentValue = min;
+        }
+      }
+
+      //update label (if user wants labels)
+      if (knobInUse.currentKnob.label != false) {
+        document.getElementById(knobInUse.id).childNodes[1].innerHTML =
+          knobInUse.currentKnob.currentValue;
+      }
+
+      //change the image position to match
+      let sum =
+        (Math.floor(
+          ((knobInUse.currentKnob.currentValue - knobInUse.currentKnob.lowVal) *
+            knobInUse.currentKnob.scaler) /
+            2
+        ) -
+          1) *
+        knobInUse.currentKnob.size;
+      let newY = `translateY(-${sum}px)`;
+      //access to the image goes: container div > image wrapper div > image tag
+      document.getElementById(
+        knobInUse.id
+      ).childNodes[0].childNodes[0].style.transform = newY;
+
+      //the knob change function call that users can hook into
+      if (typeof knobChanged == "function") {
+        knobChanged(knobInUse.id, knobInUse.currentKnob.currentValue);
+      }
+    }
+  });
+
+  //touchmove global event handler > does the bulk of the work
+  document.body.addEventListener("touchmove", function(e) {
+    if (knobInUse.id != "") {
+      //console.log(e.pageY); //for testing
+      //freeze mouse drag activity if user hits top or bottom of the page
+      if (
+        e.targetTouches[0].pageY <= 10 ||
+        e.targetTouches[0].pageY >= document.body.clientHeight - 10
+      ) {
+        knobInUse = { id: "", initY: 0, currentKnob: null };
+        return;
+      } else {
+        //calculate new knob value
+        knobInUse.currentKnob.currentValue = Math.round(
+          knobInUse.value +
+            ((knobInUse.initY - e.targetTouches[0].pageY) *
               knobInUse.currentKnob.sensitivity) /
               knobInUse.currentKnob.scaler
         );
@@ -257,5 +307,5 @@ function createGlobalEventHandlers() {
         knobChanged(knobInUse.id, knobInUse.currentKnob.currentValue);
       }
     }
-  }
+  });
 }
