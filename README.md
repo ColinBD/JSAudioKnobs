@@ -27,7 +27,7 @@ OR the hard way:
 
    `<script src="/path/to/knobs.js"></script>`
 
-3. Edit knobs.js line 64 to reflect the path to the knob_Images folder
+3. Edit knobs.js line 65 to reflect the path to the knob_Images folder
 
    `./path/to/knob_Images/`  
    
