@@ -15,26 +15,45 @@ Add audio knobs (dials) to your web app. Ideal for web audio API based projects
 EITHER do it the easy way:
 
 1. Place the following link at the bottom of the _head_ section of your html file
+
    `<script src="https://colinbd.github.io/JSAudioKnobs/knobs.js"></script>`
 
 OR the hard way:
 
 1. Download the source and place knobs.js and the knob_Images folder within your project directory.
-2. Link to the knobs.js script
-   `<script src="/path/to/knobs.js"></script>`
-3. Edit knobs.js line 64 to reflect the path to the knob_Images folder
-   `./path/to/knob_Images/`  
-   THEN:
 
-4. Within the body of your html create a div where you want a knob to reside and give it the class of 'knob' and a unique ID
+
+2. Link to the knobs.js script
+
+   `<script src="/path/to/knobs.js"></script>`
+
+3. Edit knobs.js line 64 to reflect the path to the knob_Images folder
+
+   `./path/to/knob_Images/`  
+   
+THEN:
+
+1. Within the body of your html create a div where you want a knob to reside and give it the class of 'knob' and a unique ID
+
    `<div class="knob" id="knob1"></div>`
-5. Create a script at the bottom of your body section. Then create a knob by calling new Knob and passing in the ID of the div you want to place the knob in
+
+2. Create a script at the bottom of your body section. Then create a knob by calling new Knob and passing in the ID of the div you want to place the knob within
+
    `let dial1 = new Knob({id: "knob1"});`
-6. A knob should be visible on your page, configured with the defaults
-7. You can pass in more parameters when making an instance of the class to configure the knob to your requirements - [use the interactive knob builder to design your knob, then just copy the object which is output](https://colinbd.github.io/JSAudioKnobs)
-8. You can get the value of a knob using `dial1.getValue()`
-9. You set the value of a knob like `dial1.setValue(20)`
-10. You can hook into the knob change event by placing the following function in your script
+
+3. A knob should be visible on your page, configured with the defaults
+
+4. You can pass in more parameters when making an instance of the class to configure the knob to your requirements - [use the interactive knob builder to design your knob, then just copy the object which is output](https://colinbd.github.io/JSAudioKnobs)
+
+5. You can get the value of a knob using 
+
+   `dial1.getValue()`
+
+6. You set the value of a knob like 
+
+   `dial1.setValue(20)`
+
+7. You can hook into the knob change event by placing the following function in your script
 
 ```javascript
 function knobChanged(id, val) {
@@ -70,7 +89,7 @@ Or you can set the following parameters to override the defaults:
 
 Colin Bone Dodds  
 [github.com/colinbd](https://github.com/colinbd)  
-[colinbd.com](https://colinbd.com)  
+[colinbonedodds.com](https://colinbonedodds.com)  
 colinbonedodds@gmail.com  
 [linkedin.com/in/colinbonedodds](https://linkedin.com/in/colinbonedodds)
 
