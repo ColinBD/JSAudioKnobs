@@ -147,7 +147,7 @@ class Knob {
   setImage() {
     //change the image position to match
     let sum =
-      (Math.floor((this.currentValue - this.lowVal) * this.scaler) / 2) *
+      (Math.floor(((this.currentValue - this.lowVal) * this.scaler) / 2) - 1) *
       this.size;
 
     let newY = `translateY(-${sum}px)`;
