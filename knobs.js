@@ -61,7 +61,8 @@ class Knob {
     let imgDiv = document.createElement("div");
     // let src = "./jsaudioknobs/knob_Images/" + this.imgFile;
     let src =
-      "https://colinbd.github.io/JSAudioKnobs/jsaudioknobs/knobs/" +
+      //"./knob_Images/" +
+      "https://raw.githubusercontent.com/ColinBD/JSAudioKnobs/master/docs/knobs/" +
       this.imgFile;
     imgDiv.innerHTML = `<img draggable='false' style='pointer-events: none; transform: translateY(0px);' src=${src}>`;
     let lblDiv = document.createElement("div");
@@ -146,7 +147,7 @@ class Knob {
   setImage() {
     //change the image position to match
     let sum =
-      (Math.floor(((this.currentValue - this.lowVal) * this.scaler) / 2) - 1) *
+      (Math.floor((this.currentValue - this.lowVal) * this.scaler) / 2) *
       this.size;
 
     let newY = `translateY(-${sum}px)`;
@@ -234,8 +235,8 @@ function createGlobalEventHandlers() {
           ((knobInUse.currentKnob.currentValue - knobInUse.currentKnob.lowVal) *
             knobInUse.currentKnob.scaler) /
             2
-        ) -
-          1) *
+        ) +
+          0) *
         knobInUse.currentKnob.size;
       let newY = `translateY(-${sum}px)`;
       //access to the image goes: container div > image wrapper div > image tag
