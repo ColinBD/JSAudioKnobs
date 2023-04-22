@@ -144,7 +144,7 @@ class Knob {
   setImage() {
     //change the image position to match
     let sum =
-      (Math.floor(((this.currentValue - this.lowVal) * this.scaler) / 2) - 1) *
+      (Math.floor((this.currentValue - this.lowVal) * this.scaler) / 2) *
       this.size;
 
     let newY = `translateY(-${sum}px)`;
@@ -241,8 +241,8 @@ function createGlobalEventHandlers() {
           ((knobInUse.currentKnob.currentValue - knobInUse.currentKnob.lowVal) *
             knobInUse.currentKnob.scaler) /
             2
-        ) -
-          1) *
+        ) +
+          0) *
         knobInUse.currentKnob.size;
       let newY = `translateY(-${sum}px)`;
       //access to the image goes: container div > image wrapper div > image tag
