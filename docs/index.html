@@ -377,7 +377,7 @@
         if (txt == "") {
           delete objParams.sensitivity;
         } else {
-          objParams.sensitivity = parseInt(txt);
+          objParams.sensitivity = parseFloat(txt).toFixed(1);
         }
         printObj();
         buildKnob();
